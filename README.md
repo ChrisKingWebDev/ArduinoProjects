@@ -14,7 +14,7 @@ A 4 button keyboard that plays notes over a piezo. Uses the TinyTone library to 
 ![Keyboard Instrument](./keyboardinstrument/KeyboardInstrument.jpg)
 
 (The video is using the Arduino Uno, but the concept is the same)
-<iframe width="560" height="315" src="https://www.youtube.com/embed/9bY5rUgbe9g" frameborder="0" allowfullscreen></iframe>
+[![Keyboard Instrument YouTube](https://img.youtube.com/vi/9bY5rUgbe9g/0.jpg)](https://www.youtube.com/watch?v=9bY5rUgbe9g)
 
 ## Lego Car
 A car made out of lego. Uses a servo to control the front steering and a lego motor to power the rear wheels. Uses a PS controller for the controls. A push of the controller plays La Cucaracha.
@@ -24,28 +24,28 @@ For now the controller is hard wired, but eventually it will use RF to make a re
 ![Lego Car](./legocar/LegoCar1.jpg)
 ![Lego Car](./legocar/LegoCar2.jpg)
 ![Lego Car](./legocar/LegoCar3.jpg)
-<iframe width="560" height="315" src="https://www.youtube.com/embed/o5PshL0zqwo" frameborder="0" allowfullscreen></iframe>
+[![Lego Car YouTube](https://img.youtube.com/vi/o5PshL0zqwo/0.jpg)](https://www.youtube.com/watch?v=o5PshL0zqwo)
 
 ## LED Sunrise
 Uses a 59 Neopixel LED strip from Adafruit. (Burned out the first LED) Cycles through the colours from Dark Blue to Red to Yellow to White.
 
 (Uses the same schematic as the Drip Clock, without the button)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/AJnsbtaomg8" frameborder="0" allowfullscreen></iframe>
+[![LED Sunrise YouTube](https://img.youtube.com/vi/AJnsbtaomg8/0.jpg)](https://www.youtube.com/watch?v=AJnsbtaomg8)
 
 ## LED Individual Sunrise
 Like the regular Sunrise but an LED is selected at random and cycled towards the end colour. If the selected LED is at the last colour, a new LED is selected.
 
 (Uses the same schematic as the Drip Clock, without the button)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/kyKph2ZRKNg" frameborder="0" allowfullscreen></iframe>
+[![LED Sunrise - Individual  YouTube](https://img.youtube.com/vi/kyKph2ZRKNg/0.jpg)](https://www.youtube.com/watch?v=kyKph2ZRKNg)
 
 ## LED Drip Clock
 Uses a Neopixel strip vertically to display a clock where seconds, minutes, and hours drop down the strip. Each division of time is different colour of RGB and they add together if a LED has more than one division filled
 ![DripClock](./leddripclock/DripClock.png)
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Jx6dTpjT0mM" frameborder="0" allowfullscreen></iframe>
+[![LED Drip Clock YouTube](https://img.youtube.com/vi/Jx6dTpjT0mM/0.jpg)](https://www.youtube.com/watch?v=Jx6dTpjT0mM)
 
 ## Remote control
 I lost the code for these two videos, but the videos are pretty cool.
-<iframe width="560" height="315" src="https://www.youtube.com/embed/lEl8lr9Ysio" frameborder="0" allowfullscreen></iframe>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/uCoWvACmjFk" frameborder="0" allowfullscreen></iframe>
+[![Remote Control YouTube](https://img.youtube.com/vi/lEl8lr9Ysio/0.jpg)](https://www.youtube.com/watch?v=lEl8lr9Ysio)
+[![Remote Control YouTube](https://img.youtube.com/vi/uCoWvACmjFk/0.jpg)](https://www.youtube.com/watch?v=uCoWvACmjFk)
