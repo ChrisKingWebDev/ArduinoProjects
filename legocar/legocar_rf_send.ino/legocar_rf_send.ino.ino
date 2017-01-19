@@ -10,12 +10,11 @@ int xVal;
 int yVal;
 int hornVal;
 String sendStr  = "";
-const int transmit_pin = 8;
 
 void setup() {
   
   
-  //Serial.begin(9600);
+//  Serial.begin(9600);
   if (!driver.init())
      //Serial.println("init failed");
  
@@ -54,7 +53,7 @@ void loop() {
       sendStr = sendStr + "|";
       sendStr = sendStr + String(yVal);
       
-      //Serial.println(sendStr);
+//      Serial.println(sendStr);
       
       //mySwitch.send(sendCode, 24);
 
