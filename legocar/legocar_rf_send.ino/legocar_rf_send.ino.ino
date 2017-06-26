@@ -2,6 +2,7 @@
 #include <SPI.h> // Not actualy used but needed to compile
 
 RH_ASK driver;
+// send pin is 12
 
 const int xPin = A0;
 const int yPin = A1;
@@ -66,6 +67,6 @@ void loop() {
       driver.send((uint8_t *)charBuf, sendStr.length()+1);
       driver.waitPacketSent();
     
-      delay(5);
+      //delay(5);
   
 }

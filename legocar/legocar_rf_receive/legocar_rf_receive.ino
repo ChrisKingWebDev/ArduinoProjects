@@ -6,6 +6,7 @@ Servo myServo;
 #include <SPI.h> // Not actualy used but needed to compile
 
 RH_ASK driver;
+//receive pin is 11
 
 const int servoPin = 9;
 const int hornPin = 5;
@@ -33,10 +34,11 @@ unsigned long previousSteeringMillis = 0;
 const long steeringInterval = 100;  
 
 void setup() {
-  Serial.begin(9600);
-  Serial.println("Starting");
-  
-  if (!driver.init())
+//  Serial.begin(9600);
+//  Serial.println("Starting");
+
+  driver.init();
+  //if (!driver.init())
     //Serial.println("init failed");
   
   pinMode(controlPin1,OUTPUT);
@@ -81,9 +83,9 @@ void loop() {
     }
 
   
-  if (currentMillis - previousSteeringMillis >= steeringInterval) {
+  //if (currentMillis - previousSteeringMillis >= steeringInterval) {
     // save the last time you blinked the LED
-    previousSteeringMillis = currentMillis;
+    //previousSteeringMillis = currentMillis;
 //    xVal = analogRead(xPin);
 //    yVal = analogRead(yPin);
 //    hornVal = digitalRead(hornPin);
@@ -92,18 +94,18 @@ void loop() {
 //      previousHornMillis = currentMillis;
 //    }
     
-    Serial.print("X: ");
-    Serial.print(xVal,DEC);
-    Serial.print("|Y: ");
-    Serial.print(yVal,DEC);
-    Serial.print("|Z: ");
-    Serial.print(hornVal);
+//    Serial.print("X: ");
+//    Serial.print(xVal,DEC);
+//    Serial.print("|Y: ");
+//    Serial.print(yVal,DEC);
+//    Serial.print("|Z: ");
+//    Serial.print(hornVal);
     
     angle = map(xVal, 0, 1023, 20, 159);
     myServo.write(angle);
     
-    Serial.print("|Angle: ");
-    Serial.println(angle);
+//    Serial.print("|Angle: ");
+//    Serial.println(angle);
   
     motorEnabled = 0;
     if(yVal > 600) {
@@ -116,6 +118,10 @@ void loop() {
       motorSpeed = 255; //map(yVal,400,0,0,255);
     }
     //motorSpeed = 50;
+
+    
+//    Serial.print("|motorDirection: ");
+//    Serial.print(motorDirection,DEC);
   
     if(motorDirection == 1){
       digitalWrite(controlPin1, HIGH);
@@ -124,21 +130,18 @@ void loop() {
       digitalWrite(controlPin1, LOW);
       digitalWrite(controlPin2, HIGH);
     }
+    
+//    Serial.print("|motorEnabled: ");
+//    Serial.print(motorEnabled,DEC);
+    
     if(motorEnabled == 1){
       analogWrite(enablePin, motorSpeed);
     } else {
       analogWrite(enablePin, 0);
     }
 
-    //Serial.println("");
-  }
-
-  /*if(angle > 178){
-  digitalWrite(debug1,HIGH);
-  }
-  if(angle < 1){
-  digitalWrite(debug2,HIGH);
-  }*/
+//    Serial.println("");
+  //}
 
   digitalWrite(hornPin,hornVal);
                    

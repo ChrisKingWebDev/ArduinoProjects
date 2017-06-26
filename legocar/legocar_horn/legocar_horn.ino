@@ -20,13 +20,13 @@ bool hornActive = 0;
 int currentNote = 0;
 
 int hornVal;
+int speakerPin = 1;
 int hornInputPin = 4;
-int hornOutPin = 1;
 
 void setup() {
   // put your setup code here, to run once:
-  pinMode(hornInputPin,OUTPUT);
-  pinMode(hornOutPin,OUTPUT);
+  pinMode(hornInputPin,INPUT);
+  pinMode(speakerPin, OUTPUT);
 }
 
 void loop() {
@@ -38,8 +38,6 @@ void loop() {
     hornActive = 1;
     previousHornMillis = currentMillis;
   }
-
-  
   
   if (hornActive == 1){
     if (currentMillis - previousHornMillis < noteLength[currentNote]) {

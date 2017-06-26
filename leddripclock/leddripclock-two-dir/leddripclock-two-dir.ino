@@ -4,7 +4,7 @@
 #include <Adafruit_NeoPixel.h>
 
 RTC_DS1307 rtc;
-#define PIN      4
+#define PIN      3
 #define N_LEDS  59
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(N_LEDS, PIN, NEO_GRB + NEO_KHZ800);
 
@@ -24,41 +24,68 @@ int minutesSolid = N_LEDS + 1;
 int hoursSolid = N_LEDS + 1;
 
 bool ascending = false;
+bool didAscending = false;
 
-int prevButtonState = 0;
-int buttonState = 0;
-int buttonPin = 1;
+int prevButton1State = 0;
+int prevButton2State = 0;
+int button1State = 0;
+int button2State = 0;
+int button1Pin = 1;
+int button2Pin = 4;
 
 void setup () {
   currentSecond = 0;
   currentMinute = 0;
   currentHour = 0;
 
-  pinMode(buttonPin, INPUT);
+  pinMode(button1Pin, INPUT);
+  pinMode(button2Pin, INPUT);
   
   //Serial.begin(57600);
   
   rtc.begin();
 
-//  if (! rtc.isrunning()) {
-//    //Serial.println("RTC is NOT running!");
-//    rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
-//  } else {
-//    //Serial.println("RTC is ALREADY running!");
-//  }
+  if (! rtc.isrunning()) {
+    //Serial.println("RTC is NOT running!");
+    rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+  } else {
+    //Serial.println("RTC is ALREADY running!");
+  }
 
   strip.begin();
 }
 
 void loop () {
-
-  buttonState = digitalRead(buttonPin);
-  if (buttonState == HIGH && prevButtonState == LOW ) {
-    ascending = !ascending;
-  }
-  prevButtonState = buttonState;
-  
   DateTime now = rtc.now();
+
+  button1State = digitalRead(button1Pin);
+  button2State = digitalRead(button2Pin);
+
+  if (button1State == HIGH && button2State == HIGH && !didAscending) {
+    ascending = !ascending;
+    didAscending = true;
+  }
+  
+  if (button1State == LOW && prevButton1State == HIGH && button2State == LOW && !didAscending) {
+    rtc.adjust(DateTime(now.year(), now.month(), now.day(), now.hour(), now.minute() + 1, now.second()));
+    now = rtc.now();
+    prevMinute = now.minute();
+    minutesDrip = -1;
+  }
+
+  if (button2State == LOW && prevButton2State == HIGH && button1State == LOW && !didAscending) {
+    rtc.adjust(DateTime(now.year(), now.month(), now.day(), now.hour(), now.minute() - 1, now.second()));
+    now = rtc.now();
+    prevMinute = now.minute();
+    minutesDrip = -1;
+  }
+
+  if(didAscending && button1State == LOW && button2State == LOW) {
+    didAscending = false;
+  }
+  
+  prevButton1State = button1State;
+  prevButton2State = button2State;
 
   //check for a new second
   currentSecond = now.second();
@@ -73,7 +100,7 @@ void loop () {
     }
 
     currentMinute = now.minute();
-    if (currentMinute != prevMinute) {
+    if (currentMinute > prevMinute) {
       prevMinute = currentMinute;
 
       //set up a new drip if it's not 0 minutes
@@ -164,7 +191,6 @@ void loop () {
       }
       strip.setPixelColor(k, strip.Color(red, green, blue));
     }
-    
     strip.show();
 
     if (secondsDrip != -1 && secondsDrip > secondsSolid) {
@@ -187,6 +213,8 @@ void loop () {
     if (hoursDrip == hoursSolid) {
       hoursDrip = -1;
     }
+
+    
       
       
     delay(10);
